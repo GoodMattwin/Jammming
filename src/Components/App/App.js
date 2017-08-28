@@ -13,9 +13,9 @@ class App extends Component {
       artist: 'Francesca Battistelli',
       album: 'Christmas'
       }, {
-      name: 'Boo ba',
-      artist: 'Happy Day',
-      album: 'Whoozeewatzits'
+      name: 'New World',
+      artist: 'Bjork',
+      album: 'Selmasongs'
       }, {
       name: 'Come By Me',
       artist: 'Harry Connick, Jr.',
