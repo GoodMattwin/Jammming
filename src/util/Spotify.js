@@ -18,10 +18,13 @@ const Spotify = {
   },
 
   search(term) {
-    fetch('https://api.spotify.com/v1/search?type=track&q=' + term, {
+    accessToken = Spotify.getAccessToken();
+    return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
       headers: {
-        Authorization: `Bearer ${this.getAccessToken}`
-      }}).then(response => {
+        'Authorization': 'Bearer ' + accessToken
+      }
+    }).then(response => {
+      console.log(response); // for debugging
       if (response.ok) {
         return response.json();
       }
@@ -38,7 +41,7 @@ const Spotify = {
               uri: track.uri,
             }
           })
-        } else return [];
+        } else return [{name:'AAA', artist:'aaa', album:'aAa'}, {name:'BBB', artist:'bbb', album:'bBb'}, {name:'CCC', artist:'ccc', album:'cCc'}, {name:'DDD', artist:'ddd', album:'dDd'}]; //for debugging.  Should be empty []
       });
   },
 };
