@@ -85,7 +85,7 @@ class App extends Component {
   }
 
   search(term) {
-    Spotify.search(term); // Task 68 says we'll eventually use 'this' here
+    this.setState({searchResults: Spotify.search(term)});
   }
 
   render() {

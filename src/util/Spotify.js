@@ -28,7 +28,7 @@ const Spotify = {
       throw new Error('Request failed!');
     }, networkError => console.log(networkError.message)
     ).then(jsonResponse => {
-        if (jsonResponse.tracks) {
+        if (jsonResponse) { console.log(jsonResponse); // for debugging
           return jsonResponse.tracks.items.map(track => {
             return {
               id: track.id,
