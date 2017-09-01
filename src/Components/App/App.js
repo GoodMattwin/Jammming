@@ -64,7 +64,7 @@ class App extends Component {
     }
   }
 
-  removeTrack(track) { //FIX THIS.  IT ELIMINATES WRONG TRACK
+  removeTrack(track) { //CAN THIS METHOD BE COMBINED WITH THE ONE ABOVE?
     let playlist = this.state.playlistTracks;
     let isInPlaylist = playlist.findIndex(is => is.id === track.id); // find track index in playlistTracks
     if (isInPlaylist >= 0) { // remove track and set new state of playlistTracks
@@ -77,7 +77,7 @@ class App extends Component {
     this.setState({playlistName: name});
   }
 
-  savePlaylist() {
+  savePlaylist() { // Task 63.  Is this done right?
     let trackURIs = [];
     this.state.playlistTracks.forEach(track => {
       trackURIs.push('spotify:track:'+track.id);
@@ -85,7 +85,7 @@ class App extends Component {
   }
 
   search(term) {
-    Spotify.search(term);
+    Spotify.search(term); // Task 68 says we'll eventually use 'this' here
   }
 
   render() {
@@ -98,15 +98,13 @@ class App extends Component {
           <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults}
-              onAdd={this.addTrack}
-              plusMinus='plus' />
+              onAdd={this.addTrack} />
             <Playlist
               playlistName={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
               onRemove={this.removeTrack}
               onNameChange={this.updatePlaylistName}
-              onSave = {this.savePlaylist}
-              plusMinus='minus' />
+              onSave={this.savePlaylist} />
           </div>
         </div>
       </div>

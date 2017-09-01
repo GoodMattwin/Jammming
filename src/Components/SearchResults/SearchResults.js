@@ -9,8 +9,7 @@ class SearchResults extends Component {
         <h2>Results</h2>
         <TrackList
           tracks={this.props.searchResults}
-          onAdd={this.props.onAdd}
-          plusMinus={this.props.plusMinus} />
+          onAdd={this.props.onAdd} /> 
       </div>
     );
   }

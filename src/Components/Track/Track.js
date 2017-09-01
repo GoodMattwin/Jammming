@@ -15,10 +15,10 @@ class Track extends Component {
     if (addRemove.onRemove) {
       return <a className="Track-action" onClick={this.removeTrack}>-</a>
     }
-  } // This method described in task 27
+  }
 
   addTrack() {
-    this.props.onAdd(this.props.track); // Task 45
+    this.props.onAdd(this.props.track);
   }
 
   removeTrack() {
