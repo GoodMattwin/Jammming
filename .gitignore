@@ -16,6 +16,10 @@
 .env.test.local
 .env.production.local
 
+# test
+/src/util/Test.css
+/src/util/Test.js
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

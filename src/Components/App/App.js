@@ -4,49 +4,15 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
+//import Test from '../../util/Test';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [{
-        name: 'Marshmallow World',
-        artist: 'Francesca Battistelli',
-        album: 'Christmas',
-        id: 101,
-        }, {
-        name: 'Come By Me',
-        artist: 'Harry Connick, Jr.',
-        album: 'Come By Me',
-        id: 102,
-        }, {
-        name: 'New World',
-        artist: 'Bjork',
-        album: 'Selmasongs',
-        id: 103,
-      }],
-      playlistName: 'Matt\'s Office Party Music',
-      playlistTracks: [{
-        name: 'Where It\'s At',
-        artist: 'Beck',
-        album: 'Odelay',
-        id: 104,
-        }, {
-        name: 'Communication',
-        artist: 'The Cardigans',
-        album: 'Long Gone Before Daylight',
-        id: 105,
-        }, {
-        name: 'Hey Pretty',
-        artist: 'Poe',
-        album: 'Haunted',
-        id: 106,
-        }, {
-        name: 'Straight Lines',
-        artist: 'Silverchair',
-        album: 'Young Modern',
-        id: 107,
-      }],
+      searchResults: [],
+      playlistName: 'New Playlist',
+      playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -77,10 +43,17 @@ class App extends Component {
     this.setState({playlistName: name});
   }
 
-  savePlaylist() { // Task 63.  Is this done right?
+  savePlaylist() {
+    let playlistName = this.state.playlistName;
     let trackURIs = [];
     this.state.playlistTracks.forEach(track => {
       trackURIs.push('spotify:track:'+track.id);
+    });
+    Spotify.savePlaylist(playlistName, trackURIs);
+    this.setState({
+      playlistName: 'New Playlist',
+      searchResults: [],
+      playlistTracks: []
     });
   }
 
@@ -92,7 +65,11 @@ class App extends Component {
     })
   }
 
-  render() {
+  componentDidMount() {
+    Spotify.getAccessToken();
+  }
+
+  render() { //<Test /> {/*DEBUG*/}
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
