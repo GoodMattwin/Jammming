@@ -26,13 +26,15 @@ class SearchBar extends Component {
     if (event.key === 'Enter') this.search();
   }
 
-  render() { //ADD FUNCTIONALITY FOR HITTING RETURN
+  render() {
     return (
       <div className="SearchBar">
         <input
+          id='searchBar'
           placeholder="Enter A Song, Album, or Artist"
           onChange={this.handleTermChange}
-          onKeyPress={this.handleKeyPress} />
+          onKeyPress={this.handleKeyPress}
+          defaultValue={this.props.searchTerm} />
         <a onClick={this.search}>SEARCH</a>
       </div>
     );

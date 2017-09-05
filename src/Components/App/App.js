@@ -5,13 +5,15 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
 //import Test from '../../util/Test';
+const newPLaylistName = 'New Playlist';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchResults: [],
-      playlistName: 'New Playlist',
+      searchTerm: '',
+      playlistName: newPLaylistName,
       playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
@@ -51,10 +53,14 @@ class App extends Component {
     });
     Spotify.savePlaylist(playlistName, trackURIs);
     this.setState({
-      playlistName: 'New Playlist',
       searchResults: [],
-      playlistTracks: []
+      searchTerm: '',
+      playlistTracks: [],
+      playlistName: newPLaylistName,
     });
+    // Because defaultValue doesn't update after initial load
+    document.getElementById('searchBar').value='';
+    document.getElementById('playlistName').value=newPLaylistName;
   }
 
   search(term) {
@@ -75,7 +81,8 @@ class App extends Component {
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar
-            onSearch={this.search} />
+            onSearch={this.search}
+            searchTerm={this.state.searchTerm} />
           <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults}
