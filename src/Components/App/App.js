@@ -4,8 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
-//import Test from '../../util/Test';
-const newPLaylistName = 'New Playlist';
+const newPlaylistName = 'New Playlist';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class App extends Component {
     this.state = {
       searchResults: [],
       searchTerm: '',
-      playlistName: newPLaylistName,
+      playlistName: newPlaylistName,
       playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
@@ -32,10 +31,10 @@ class App extends Component {
     }
   }
 
-  removeTrack(track) { //CAN THIS METHOD BE COMBINED WITH THE ONE ABOVE?
+  removeTrack(track) {
     let playlist = this.state.playlistTracks;
     let isInPlaylist = playlist.findIndex(is => is.id === track.id); // find track index in playlistTracks
-    if (isInPlaylist >= 0) { // remove track and set new state of playlistTracks
+    if (isInPlaylist >= 0) { // removes track and set new state of playlistTracks
       playlist.splice(isInPlaylist, 1);
       this.setState({playlistTracks: playlist});
     }
@@ -56,11 +55,11 @@ class App extends Component {
       searchResults: [],
       searchTerm: '',
       playlistTracks: [],
-      playlistName: newPLaylistName,
+      playlistName: newPlaylistName,
     });
     // Because defaultValue doesn't update after initial load
     document.getElementById('searchBar').value='';
-    document.getElementById('playlistName').value=newPLaylistName;
+    document.getElementById('playlistName').value=newPlaylistName;
   }
 
   search(term) {
@@ -75,7 +74,7 @@ class App extends Component {
     Spotify.getAccessToken();
   }
 
-  render() { //<Test /> {/*DEBUG*/}
+  render() {
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
