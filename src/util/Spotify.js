@@ -1,5 +1,5 @@
 const CLIENT_ID = '2935f548805a4bf6b245c2b0a6a2d397';
-const REDIRECT_URI = 'http://jamming_mg.surge.sh/';
+const REDIRECT_URI = 'http://localhost:3000/';
 let accessToken ='';
 
 const Spotify = {
@@ -22,9 +22,9 @@ const Spotify = {
   },
 
   search(term) {
-    accessToken = Spotify.getAccessToken();
+    //accessToken = Spotify.getAccessToken();
     const fetchURL = `https://api.spotify.com/v1/search?type=track&q=${term}`;
-    const headers = {headers: {Authorization: `Bearer  ${accessToken}`}};
+    const headers = {headers: {Authorization: `Bearer  ${Spotify.getAccessToken()}`}};
     return fetch(fetchURL, headers).then(response => {
       if (response.ok) {
         return response.json();
@@ -48,8 +48,8 @@ const Spotify = {
 
   savePlaylist(name, trackURIs) {
     if (!name || !trackURIs) return;
-    const accessToken = Spotify.getAccessToken();
-    const headers = {Authorization: `Bearer ${accessToken}`};
+    //const accessToken = Spotify.getAccessToken();
+    const headers = {Authorization: `Bearer ${Spotify.getAccessToken()}`};
     const createPlaylistHeaders = {
       headers: headers,
       method: 'POST',

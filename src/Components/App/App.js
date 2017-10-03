@@ -11,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       searchResults: [],
-      searchTerm: '',
+      //searchTerm: '',
       playlistName: newPlaylistName,
       playlistTracks: [],
     };
